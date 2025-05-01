@@ -29,12 +29,15 @@ export default async function Image() {
     const [regular, bold] = await Promise.all([regularFont, boldFont]);
 
     // Fetch a random dog image from The Dog API
-    const response = await fetch('https://api.thedogapi.com/v1/images/search?size=med', {
-      headers: {
-        'x-api-key': process.env.DOG_API_KEY || '',
-      },
-    });
-    
+    const response = await fetch(
+      'https://api.thedogapi.com/v1/images/search?size=med',
+      {
+        headers: {
+          'x-api-key': process.env.DOG_API_KEY || '',
+        },
+      }
+    );
+
     const [data] = await response.json();
     const dogImageUrl = data?.url;
 
@@ -99,7 +102,7 @@ export default async function Image() {
               borderRadius: 24,
             }}
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
+            { }
             <img
               src={dogImageUrl}
               alt="Dog"
@@ -132,10 +135,10 @@ export default async function Image() {
     );
   } catch (error) {
     console.error('OpenGraph generation error:', error);
-    
+
     // Fallback to a simple text-only OG image if something goes wrong
     const regular = await regularFont;
-    
+
     return new ImageResponse(
       (
         <div
@@ -175,4 +178,4 @@ export default async function Image() {
       }
     );
   }
-} 
+}

@@ -3,11 +3,14 @@ import { DogBreed } from '@/types/api';
 const DOG_API_BASE_URL = 'https://api.thedogapi.com/v1';
 
 async function searchBreed(breedName: string): Promise<DogBreed> {
-  const response = await fetch(`${DOG_API_BASE_URL}/breeds/search?q=${encodeURIComponent(breedName)}`, {
-    headers: {
-      'x-api-key': process.env.DOG_API_KEY!
+  const response = await fetch(
+    `${DOG_API_BASE_URL}/breeds/search?q=${encodeURIComponent(breedName)}`,
+    {
+      headers: {
+        'x-api-key': process.env.DOG_API_KEY!,
+      },
     }
-  });
+  );
 
   if (!response.ok) {
     throw new Error('Failed to search for breed');
@@ -35,11 +38,14 @@ export async function getRandomBreedImage(breedId: string): Promise<string> {
     throw new Error('DOG_API_KEY is not set');
   }
 
-  const response = await fetch(`${DOG_API_BASE_URL}/images/search?breed_id=${breedId}`, {
-    headers: {
-      'x-api-key': process.env.DOG_API_KEY
+  const response = await fetch(
+    `${DOG_API_BASE_URL}/images/search?breed_id=${breedId}`,
+    {
+      headers: {
+        'x-api-key': process.env.DOG_API_KEY,
+      },
     }
-  });
+  );
 
   if (!response.ok) {
     throw new Error('Failed to fetch breed image');
@@ -51,4 +57,4 @@ export async function getRandomBreedImage(breedId: string): Promise<string> {
   }
 
   return image.url;
-} 
+}

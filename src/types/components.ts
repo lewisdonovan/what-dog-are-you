@@ -1,6 +1,7 @@
-import { BreedMatch } from "./api";
+import { BreedMatch } from './api';
 
 // Component prop types
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface MatchResult extends BreedMatch {}
 
 export interface PhotoUploaderProps {
@@ -11,4 +12,4 @@ export interface PhotoUploaderProps {
 export interface ResultsDisplayProps {
   result?: MatchResult;
   isLoading?: boolean;
-} 
+}

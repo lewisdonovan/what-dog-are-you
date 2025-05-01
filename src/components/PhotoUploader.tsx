@@ -1,13 +1,16 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import { Loader2, Camera, Upload } from "lucide-react";
-import { PhotoUploaderProps } from "@/types/components";
-import { cn } from "@/lib/utils";
+import { useState } from 'react';
+import Image from 'next/image';
+import { Button } from '@/components/ui/button';
+import { Loader2, Camera, Upload } from 'lucide-react';
+import { PhotoUploaderProps } from '@/types/components';
+import { cn } from '@/lib/utils';
 
-export function PhotoUploader({ onPhotoSelect, isProcessing = false }: PhotoUploaderProps) {
+export function PhotoUploader({
+  onPhotoSelect,
+  isProcessing = false,
+}: PhotoUploaderProps) {
   const [preview, setPreview] = useState<string | null>(null);
   const [isDragging, setIsDragging] = useState(false);
 
@@ -42,7 +45,7 @@ export function PhotoUploader({ onPhotoSelect, isProcessing = false }: PhotoUplo
   const handleDrop = (e: React.DragEvent) => {
     e.preventDefault();
     setIsDragging(false);
-    
+
     const file = e.dataTransfer.files[0];
     if (file && file.type.startsWith('image/')) {
       processFile(file);
@@ -51,41 +54,43 @@ export function PhotoUploader({ onPhotoSelect, isProcessing = false }: PhotoUplo
 
   return (
     <div className="space-y-6">
-      <div 
+      <div
         className={cn(
-          "relative flex flex-col items-center justify-center border-2 border-dashed rounded-xl p-12 transition-all duration-200",
-          isDragging ? "border-primary bg-primary/5 scale-102" : "border-gray-300",
-          !preview && "hover:border-primary/50 hover:bg-gray-50/50"
+          'relative flex flex-col items-center justify-center rounded-xl border-2 border-dashed p-12 transition-all duration-200',
+          isDragging
+            ? 'border-primary bg-primary/5 scale-102'
+            : 'border-gray-300',
+          !preview && 'hover:border-primary/50 hover:bg-gray-50/50'
         )}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
       >
         {preview ? (
-          <div className="relative w-72 h-72 mb-4 group">
+          <div className="group relative mb-4 h-72 w-72">
             {isProcessing && (
-              <div className="absolute inset-0 bg-black/50 backdrop-blur-sm flex flex-col gap-3 items-center justify-center rounded-xl">
+              <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 rounded-xl bg-black/50 backdrop-blur-sm">
                 <Loader2 className="h-8 w-8 animate-spin text-white" />
-                <p className="text-white font-medium">Finding your match...</p>
+                <p className="font-medium text-white">Finding your match...</p>
               </div>
             )}
             <Image
               src={preview}
               alt="Preview"
               fill
-              className="object-cover rounded-xl shadow-lg transition-transform duration-200 group-hover:scale-[1.02]"
+              className="rounded-xl object-cover shadow-lg transition-transform duration-200 group-hover:scale-[1.02]"
             />
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center py-4">
-            <div className="mb-4 p-4 rounded-full bg-primary/10">
-              <Camera className="h-8 w-8 text-primary" />
+            <div className="bg-primary/10 mb-4 rounded-full p-4">
+              <Camera className="text-primary h-8 w-8" />
             </div>
-            <p className="text-lg font-medium mb-2">Drop your photo here</p>
-            <p className="text-sm text-gray-500 mb-4">or click to upload</p>
+            <p className="mb-2 text-lg font-medium">Drop your photo here</p>
+            <p className="mb-4 text-sm text-gray-500">or click to upload</p>
           </div>
         )}
-        
+
         <input
           type="file"
           id="photo"
@@ -94,15 +99,15 @@ export function PhotoUploader({ onPhotoSelect, isProcessing = false }: PhotoUplo
           onChange={handleFileChange}
           disabled={isProcessing}
         />
-        
-        <Button 
-          asChild 
+
+        <Button
+          asChild
           className={cn(
-            "w-full max-w-xs transition-all duration-200",
-            preview && "hover:scale-105"
+            'w-full max-w-xs transition-all duration-200',
+            preview && 'hover:scale-105'
           )}
           disabled={isProcessing}
-          variant={preview ? "secondary" : "default"}
+          variant={preview ? 'secondary' : 'default'}
           size="lg"
         >
           <label htmlFor="photo" className="cursor-pointer">
@@ -114,16 +119,14 @@ export function PhotoUploader({ onPhotoSelect, isProcessing = false }: PhotoUplo
             ) : (
               <>
                 <Upload className="mr-2 h-4 w-4" />
-                {preview ? "Choose Different Photo" : "Upload Photo"}
+                {preview ? 'Choose Different Photo' : 'Upload Photo'}
               </>
             )}
           </label>
         </Button>
 
-        <p className="text-sm text-gray-500 mt-3">
-          Supports JPG, PNG files
-        </p>
+        <p className="mt-3 text-sm text-gray-500">Supports JPG, PNG files</p>
       </div>
     </div>
   );
-} 
+}

@@ -51,7 +51,7 @@ export default function Home() {
 
   return (
     <main className="container mx-auto min-h-screen px-4 py-10">
-      <Card className="mx-auto max-w-2xl">
+      <Card className="mx-auto max-w-2xl pb-6">
         <CardHeader>
           <CardTitle>What Dog Breed Are You?</CardTitle>
           <CardDescription>

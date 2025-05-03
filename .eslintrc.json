@@ -1,7 +1,38 @@
 {
-  "extends": ["next/core-web-vitals", "prettier"],
+  "extends": [
+    "universe/native",
+    "universe/shared/typescript-analysis",
+    "plugin:react-native/all",
+    "prettier"
+  ],
+  "plugins": ["react-native"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "parser": "@typescript-eslint/parser",
+      "parserOptions": {
+        "project": "./tsconfig.json"
+      },
+      "rules": {
+        "@typescript-eslint/no-floating-promises": "error",
+        "@typescript-eslint/no-explicit-any": "warn"
+      }
+    },
+    {
+      "files": ["*.js", "*.jsx", "*.mjs"],
+      "rules": {
+        "@typescript-eslint/no-floating-promises": "off",
+        "@typescript-eslint/no-explicit-any": "off"
+      }
+    }
+  ],
   "rules": {
     "no-unused-vars": "error",
-    "no-console": ["warn", { "allow": ["warn", "error"] }]
+    "no-console": ["warn", { "allow": ["warn", "error"] }],
+    "react-native/no-inline-styles": "warn",
+    "react-native/no-raw-text": ["warn", { "skip": ["Text"] }],
+    "react-native/no-single-element-style-arrays": "warn",
+    "react-native/no-color-literals": "off",
+    "react-native/sort-styles": "off"
   }
 }

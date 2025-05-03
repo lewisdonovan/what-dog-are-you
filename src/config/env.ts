@@ -1,17 +1,16 @@
 import Constants from 'expo-constants';
 
-// API keys should only be accessed in API routes
+// In Expo, we need to access environment variables through Constants.expoConfig.extra
 export const ENV = {
-  API_URL: Constants.expoConfig?.extra?.apiUrl || 'http://localhost:3000',
+  HUGGING_FACE_API_KEY: Constants.expoConfig?.extra?.huggingFaceApiKey || '',
+  DOG_API_KEY: Constants.expoConfig?.extra?.dogApiKey || '',
 };
 
-// Validate environment variables in API routes only
-export function validateApiKeys() {
-  const requiredEnvVars = ['HUGGING_FACE_API_KEY', 'DOG_API_KEY'] as const;
+// Validate environment variables
+const requiredEnvVars = ['HUGGING_FACE_API_KEY', 'DOG_API_KEY'] as const;
 
-  for (const envVar of requiredEnvVars) {
-    if (!process.env[envVar]) {
-      throw new Error(`Missing required environment variable: ${envVar}`);
-    }
+for (const envVar of requiredEnvVars) {
+  if (!ENV[envVar]) {
+    console.error(`Missing required environment variable: ${envVar}`);
   }
 } 

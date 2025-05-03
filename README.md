@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# What Dog Are You?
+
+A React Native Expo app that uses AI to tell you which dog breed you look like! Built with:
+
+- Expo 53.0.7
+- React Native 0.79.2
+- HuggingFace API for image analysis
+- The Dog API for breed information
 
 ## Getting Started
 
-First, run the development server:
-
+1. Install dependencies:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Create a `.env` file with your API keys:
+```
+HUGGING_FACE_API_KEY=your_key_here
+DOG_API_KEY=your_key_here
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Start the development server:
+```bash
+npx expo start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Use Expo Go on your device or an emulator to run the app.
 
-## Learn More
+## Features
 
-To learn more about Next.js, take a look at the following resources:
+- Take or select a photo
+- AI-powered breed matching
+- View breed characteristics and traits
+- See alternative breed matches
+- Beautiful native UI
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Development
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `src/app/` - App screens and API routes
+- `src/services/` - API integrations
+- `src/types/` - TypeScript types
+- `src/constants/` - Configuration constants
